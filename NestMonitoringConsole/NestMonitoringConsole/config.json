@@ -1,0 +1,8 @@
+﻿{
+  "PREFIX": "http://*:8000/",
+  "APPINSIGHTS_INSTRUMENTATIONKEY": "<Guid>",
+  "NESTTOKEN": "<Nest.Token>",
+  "DEVICEID": "<DeviceId>",
+  "OPENWEATHERTOKEN": "<OpenWeather.Token>",
+  "CITYID": "CityId"
+}

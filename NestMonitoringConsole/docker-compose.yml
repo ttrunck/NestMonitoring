@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  nestmonitoringconsole:
+    image: nestmonitoringconsole
+    ports:
+      - 8000:8000
+    build:
+      context: .
+      dockerfile: NestMonitoringConsole/Dockerfile
