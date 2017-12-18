@@ -45,7 +45,7 @@ namespace NestMonitoringConsole
                         success = response.IsSuccessStatusCode;
                         if (!success)
                         {
-                            tc.TrackTrace($"Call to Nest failed. Status code: {response.StatusCode}, Content: {content}", SeverityLevel.Critical);
+                            tc.TrackTrace($"Call to OpenWeather failed. Status code: {response.StatusCode}, Content: {content}", SeverityLevel.Critical);
                         }
                     }
                     finally
