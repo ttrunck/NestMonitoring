@@ -50,6 +50,7 @@ namespace NestMonitoringConsole
                         if (!success)
                         {
                             tc.TrackTrace($"Call to Nest failed. Status code: {response.StatusCode}, Content: {content}", SeverityLevel.Critical);
+                            return "";
                         }
                     }
                     finally
