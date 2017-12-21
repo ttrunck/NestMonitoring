@@ -20,6 +20,7 @@ namespace NestMonitoringConsole
         private readonly string deviceId;
         private TelemetryClient tc;
         private IMemoryCache cache;
+        private HttpClient httpClient;
 
         public NestCall(IConfigurationRoot configuration, TelemetryClient telemetryClient)
         {
@@ -27,13 +28,16 @@ namespace NestMonitoringConsole
             token = configuration["NESTTOKEN"];
             deviceId = configuration["DEVICEID"];
             cache = new MemoryCache(new MemoryCacheOptions());
+            httpClient = new HttpClient
+            {
+                Timeout = TimeSpan.FromSeconds(10)
+            };
         }
 
         public async Task<string> GetNestMetric()
         {
             try
             {
-                var httpClient = new HttpClient();
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 string prometheusMetric;
                 if (!cache.TryGetValue(nameof(GetNestMetric), out prometheusMetric))

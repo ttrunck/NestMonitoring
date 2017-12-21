@@ -18,7 +18,6 @@ namespace NestMonitoringConsole
 
             TelemetryConfiguration.Active.InstrumentationKey = configuration["APPINSIGHTS_INSTRUMENTATIONKEY"];
             TelemetryClient tc = new TelemetryClient();
-            tc.TrackTrace("This is a test for real real", SeverityLevel.Critical);
 
             var webServer = new WebServer(configuration, tc);
             webServer.Run();

@@ -17,6 +17,7 @@ namespace NestMonitoringConsole
         private readonly string cityId;
         private TelemetryClient tc;
         private IMemoryCache cache;
+        private HttpClient httpClient;
 
         public OpenWeatherCall(IConfigurationRoot configuration, TelemetryClient telemetryClient)
         {
@@ -24,13 +25,16 @@ namespace NestMonitoringConsole
             token = configuration["OPENWEATHERTOKEN"];
             cityId = configuration["CITYID"];
             cache = new MemoryCache(new MemoryCacheOptions());
+            httpClient = new HttpClient
+            {
+                Timeout = TimeSpan.FromSeconds(10)
+            };
         }
 
         public async Task<string> GetOpenWeatherMetric()
         {
             try
             {
-                var httpClient = new HttpClient();
                 string prometheusMetric;
                 if (!cache.TryGetValue(nameof(GetOpenWeatherMetric), out prometheusMetric))
                 {
